@@ -1,0 +1,19 @@
+{
+    "name": "realvirtual.interfaces.opcua.editor",
+    "rootNamespace": "",
+    "references": [
+        "realvirtual.base",
+        "realvirtual.interfaces.opocua"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

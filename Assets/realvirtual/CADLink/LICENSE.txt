@@ -1,0 +1,36 @@
+CADLink - CAD Interface for Unity
+Copyright 2019 in2sight GmbH (https://realvirtual.io)
+
+
+This asset is governed by the Asset Store EULA; however, the following components are governed by the licenses indicated below:
+    
+A)   NaughtyAttributes, copyright Denis Rizov,
+     which is available under MIT license.
+     For details see https://github.com/dbrizov/NaughtyAttributes
+     
+B)   thremf, copyright IxMilia,
+     which is available under MIT license.
+     For details see  https://github.com/ixmilia/threemf
+     
+C)   Ionic.Zip, copyright Peter Dolkens,
+     which is available under Microsoft Public License (Ms-PL).
+     For details see https://www.nuget.org/packages/Ionic.Zip/
+     
+D)   OpenCASCADE, copyright by Open CASCADE Technology software
+     which is available under Open CASCASE exception (version 1.0) to to GNU LGPL version 2.1.
+     
+          Open CASCADE exception (version 1.0) to GNU LGPL version 2.1.
+          
+          The object code (i.e. not a source) form of a "work that uses the Library"
+          can incorporate material from a header file that is part of the Library.
+          As a special exception to the GNU Lesser General Public License version 2.1,
+          you may distribute such object code incorporating material from header files
+          provided with the Open CASCADE Technology libraries (including code of CDL
+          generic classes) under terms of your choice, provided that you give
+          prominent notice in supporting documentation to this code that it makes use
+          of or is based on facilities provided by the Open CASCADE Technology software.
+          
+     For details see https://dev.opencascade.org
+     
+
+     

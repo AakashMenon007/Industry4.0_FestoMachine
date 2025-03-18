@@ -1,0 +1,19 @@
+{
+    "name": "realvirtual.interfaces.opocua",
+    "rootNamespace": "",
+    "references": [
+        "NaughtyAttributes.Core",
+        "realvirtual.base"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "WebGL"
+    ],
+    "allowUnsafeCode": true,
+    "overrideReferences": true,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

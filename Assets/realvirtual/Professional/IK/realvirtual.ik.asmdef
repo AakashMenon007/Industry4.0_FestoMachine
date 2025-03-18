@@ -1,0 +1,22 @@
+{
+    "name": "realvirtual.ik",
+    "rootNamespace": "",
+    "references": [
+        "NaughtyAttributes.Core",
+        "realvirtual.base"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "iOS",
+        "WebGL"
+    ],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [
+        "!ENABLE_IL2CPP"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

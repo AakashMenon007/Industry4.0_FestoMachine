@@ -1,0 +1,21 @@
+{
+    "name": "realvirtual.interfaces.mqtt",
+    "rootNamespace": "",
+    "references": [
+        "GUID:d9c143f5f90809e41835a785e1aafc2e",
+        "GUID:9069ac25d95ca17448a247f3bb1c769f",
+        "GUID:e308546d627524f418b1aaa0b161dd30",
+        "GUID:776d03a35f1b52c4a9aed9f56d7b4229"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "WebGL"
+    ],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

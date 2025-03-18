@@ -1,0 +1,150 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &7248899770315789559
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 3151938887993076920}
+  - component: {fileID: 3020454903464284093}
+  m_Layer: 0
+  m_Name: DensoInterface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 4294967295
+  m_IsActive: 1
+--- !u!4 &3151938887993076920
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248899770315789559}
+  m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 10
+  m_LocalEulerAnglesHint: {x: 0, y: 90, z: 0}
+--- !u!114 &3020454903464284093
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7248899770315789559}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 00fde7eb59387ed468d512f5bb340f61, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Active: 0
+  FromTemplate: {fileID: 0}
+  realvirtualController: {fileID: 0}
+  HideNonG44Components: 0
+  SceneIsAdditive: 0
+  ForceStop: 0
+  IsConnected: 0
+  MinUpdateCycle: 8
+  CommCycleMeasures: 1000
+  CommCycleNr: 0
+  CommTimeMs: 0
+  CommTimeMin: 0
+  CommTimeMed: 0
+  CommTimeMax: 0
+  CommCycleMeasureNum: 0
+  UpdateCycleMs: 0
+  ThreadStatus: 
+  MinUpdateCycle2: 8
+  CommCycleNr2: 0
+  CommTimeMs2: 0
+  CommTimeMin2: 0
+  CommTimeMed2: 0
+  CommTimeMax2: 0
+  CommCycleMeasureNum2: 0
+  UpdateCycleMs2: 0
+  ThreadStatus2: 
+  NoThreading: 0
+  TwoThreads: 1
+  ShowGrid: 0
+  GridSize: 10
+  ShowSafetyAreas: 0
+  SafetyArea: 
+  ShowAreas: 0
+  AreaNumber: 0
+  ShowTool: 0
+  ToolNumber: -1
+  ShowWork: 0
+  WorkNumber: -1
+  ControllerName: Robot1
+  RobotControllerType: 8
+  ipAdress:
+    Address1: 127
+    Address2: 0
+    Address3: 0
+    Address4: 1
+  WincapsProject: 
+  ConnectRealRobot: 0
+  DebugMode: 0
+  RoundSyncPositions: 1
+  SafetyAreaNumber: 0
+  RobotFlange: {fileID: 0}
+  RobotAxis:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  NumberInputs: 0
+  NumberOutputs: 0
+  _toolFrame:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  _workFrame:
+    e00: 1
+    e01: 0
+    e02: 0
+    e03: 0
+    e10: 0
+    e11: 1
+    e12: 0
+    e13: 0
+    e20: 0
+    e21: 0
+    e22: 1
+    e23: 0
+    e30: 0
+    e31: 0
+    e32: 0
+    e33: 1
+  _matLine: {fileID: 0}
+  _matOverlay: {fileID: 0}
+  _matGrid: {fileID: 0}
+  _robotWork:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}
+  _robotTool:
+    position: {x: 0, y: 0, z: 0}
+    rotation: {x: 0, y: 0, z: 0, w: 0}

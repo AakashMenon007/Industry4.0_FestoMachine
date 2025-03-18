@@ -1,0 +1,19 @@
+{
+    "name": "realvirtual.interfaces.plcsimadvanced.editor",
+    "rootNamespace": "",
+    "references": [
+        "realvirtual.interfaces.plcsimadvanced",
+        "realvirtual.base"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

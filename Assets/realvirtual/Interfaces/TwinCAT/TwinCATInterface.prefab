@@ -1,0 +1,83 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1352764059165736656
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1352764059165736654}
+  - component: {fileID: 6314647197829673161}
+  m_Layer: 0
+  m_Name: TwinCATInterface
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1352764059165736654
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352764059165736656}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.4652742, y: -1.2434623, z: -1.4410539}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &6314647197829673161
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1352764059165736656}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6d579cdd0d7541408a8e8c2b5dd2636, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Name: 
+  Active: 0
+  FromTemplate: {fileID: 0}
+  realvirtualController: {fileID: 0}
+  HideNonG44Components: 0
+  SceneIsAdditive: 0
+  IsConnected: 0
+  MinCommCycleMs: 0
+  CommCycleMeasures: 1000
+  CommCycleNr: 0
+  CommCycleMs: 0
+  CommCycleMin: 0
+  CommCycleMed: 0
+  CommCycleMax: 0
+  CommCycleMeasureNum: 0
+  ThreadStatus: 
+  NoThreading: 0
+  NetId: 127.0.0.1.1.1
+  Port: 851
+  UpdateMode: 2
+  PLCOutputsMinUpdateCycleMs: 40
+  PLCOutputsMaxUpdateDelay: 40
+  MaxNumberADSSubCommands: 1000
+  ReadAllOutputsOnStart: 0
+  WriteAllInputsOnStart: 0
+  DebugMode: 0
+  ConnectionStatus: 
+  RouterStatus: 
+  PLCStatus: 
+  NumberInputs: 0
+  NumberOutputs: 0
+  StreamLength: 0
+  RegExImportSignals: []
+  RegExSkipSignals: []
+  RegExSymbolIsPLCInput: []
+  CreateSubFolders: 1
+  ReadSignalValuesOnImport: 1

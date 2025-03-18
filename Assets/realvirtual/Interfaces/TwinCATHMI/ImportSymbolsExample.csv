@@ -1,0 +1,12 @@
+﻿Group;Name;Symbol;Input/Output;Float / Bool / Int;Comment
+;;PLC1.MAIN.CountBool;Output;Int;Test Comment
+;;PLC1.MAIN.DataOut[1];Output;Float;
+;;PLC1.MAIN.Position;Output;Float;
+Robot;Door1;PLC1.MAIN.Robot::BOOL_DOOR1;Output;Bool;
+Robot;ActPos1;PLC1.MAIN.Robot::REAL_ActPos[1];Output;Float;
+Robot;;PLC1.MAIN.Robot::BOOL_ModulOk;Input;Bool;
+Robot;;PLC1.MAIN.Robot::REAL_ActVel[1];Input;Float;
+Robot;;PLC1.MAIN.Robot::REAL_ActVel[2];Input;Float;
+Robot;;PLC1.MAIN.Robot::REAL_ActVel[3];Input;Float;
+Robot;;PLC1.MAIN.Robot::REAL_ActVel[4];Input;Float;
+Robot;;PLC1.MAIN.Robot::REAL_ActVel[5];Input;Float;

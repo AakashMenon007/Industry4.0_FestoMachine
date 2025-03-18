@@ -1,0 +1,25 @@
+{
+    "name": "realvirtual.base",
+    "rootNamespace": "",
+    "references": [
+        "NaughtyAttributes.Core",
+        "Cinemachine",
+        "Unity.Recorder.Base",
+        "Unity.Recorder.Editor",
+        "Unity.Postprocessing.Runtime",
+        "AGXUnity",
+        "realvirtual.spacenavigator"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [
+        "Stadia",
+        "Switch"
+    ],
+    "allowUnsafeCode": true,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html>
+<head><meta name="generator" content="Hexo 3.8.0">
+  <meta charset="utf-8">
+  <title>gam4automation DOC - OPCUA</title>
+  <link href="https://cdnjs.cloudflare.com/ajax/libs/normalize/4.0.0/normalize.min.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600,300,700" rel="stylesheet" type="text/css">
+  <link href="style/docsopcua.css" rel="stylesheet">
+</head>
+<body>
+ 
+  <div class="page">
+   
+    <div class="page-content">
+	<p>This is the offline version of the documentation. We recommend you to use the <a href="https://game4automation.com/documentation/current/index.html">online documentation.</a></p>
+ <h1 id="OPCUA-Interface-OPCUA4Unity"><a href="#OPCUA-Interface-OPCUA4Unity" class="headerlink" title="OPCUA Interface - OPCUA4Unity"></a>OPCUA Interface - OPCUA4Unity</h1><h2 id="Introduction"><a href="#Introduction" class="headerlink" title="Introduction"></a>Introduction</h2><p>OPCUA is a standard, maintained by the OPC foundation, for industrial communication. Most of the providers of automation devices´, like PLC and Robot manufacturers, are providing OPCUA servers. Sometimes the OPCUA server is directly integrated into the automation device and sometimes a special software neeeds to be installed on a PC. OPCUA is one important upcoming standard for Industry4.0.</p>
+<p>For more information please check:<br><a href="https://opcfoundation.org/about/opc-technologies/opc-ua/" target="_blank" rel="noopener">https://opcfoundation.org/about/opc-technologies/opc-ua/</a></p>
+<blockquote>
+<p>OPCUA4Unity is available as a standalone asset as well as part of Game4Automation Professional. The connection to the behavior models (PLCInputs and PLCOutputs) as well as the display of the Signals in the Hierarchy view is part of the Game4Automation Framework and not available in the OPCUA4Unity standalone asset.</p>
+</blockquote>
+<h2 id="Installation"><a href="#Installation" class="headerlink" title="Installation"></a>Installation</h2><p>Both assets, Game4Automation Professional as well as OPCUA4Unity are installed by using the Unity Asset Store. </p>
+<p>If you are using the Game4Automation Framework you are finding the OPCUA Interface after the installation under the path <em>game4automation/private/interfaces/OPCUA4Unity</em> If you are using the Standalone version you will find it under the path <em>OPCUA4Unity</em> in the Asset folder.</p>
+<img src="images\opcua-path.png">
+<p>if you are using the Game4Automation Professional version you can use OPCUA4Unity also independent from Game4Automation. You just need to move the full OPCUA4Unity folder to a new project.</p>
+<h2 id="Demo-model"><a href="#Demo-model" class="headerlink" title="Demo model"></a>Demo model</h2><p>In the sub-folder, DemoModel we provide a small demo which is showing you how to use the OPCUA interface independent from the Game4Automation Framework. The demo model is working with a demo OPCUA Demo server (OPC UA C++ Demo Server V1.6.3 (Windows)) from Unified Automation (<a href="https://www.unified-automation.com/downloads/opc-ua-servers.html)" target="_blank" rel="noopener">https://www.unified-automation.com/downloads/opc-ua-servers.html)</a>. You can download the OPCUA server for free, if you register before at Unified Automation.</p>
+<img src="images\opcua-demomodel.png">
+<h2 id="Interface-Configuration"><a href="#Interface-Configuration" class="headerlink" title="Interface Configuration"></a>Interface Configuration</h2><p>If you are using Game4Automation you can use the tool-bar to add an OPCUA interface to your scene:<br><img src="images\opcua-addinterface.png"></p>
+<p>Otherwise you will need to create an empty Gameobject and add the Script OPCUA_Interface to your Gameobject. </p>
+<p>For the interface you will need to define at least</p>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Server IP</td>
+<td>The IP address of the server, whether on your machine like the demo server or on an external device</td>
+</tr>
+<tr>
+<td>Server Port</td>
+<td>The port of the OPCUA server</td>
+</tr>
+<tr>
+<td>Session Timeout Ms</td>
+<td>The timeout of the session in Ms if the OPCUA server does not sends an answer</td>
+</tr>
+<tr>
+<td>Top Node Id</td>
+<td>The ID of the topnode under which all nodes should be imported. Please note, that you don’t need to import nodes if you would like to use them in your own script code. You can access in script any node the OPCUA server is importing.</td>
+</tr>
+<tr>
+<td>Debug Mode</td>
+<td>If set to true the console log will display additional messages for debugging</td>
+</tr>
+<tr>
+<td>Application Name</td>
+<td>The OPCUA application name</td>
+</tr>
+<tr>
+<td>Appication URN</td>
+<td>The OPCUA Application URN</td>
+</tr>
+<tr>
+<td>Product URI</td>
+<td>The OPCUA Product URI</td>
+</tr>
+<tr>
+<td>Client Private Certificate</td>
+<td>The path to the client private certificate inside the Streaming Assets Folder (please only use the subpath or the filename directly if certificate is directly inside StreamingAssets). Keep this value emtpy if you are not using certificates for security.</td>
+</tr>
+<tr>
+<td>Client Public Certificate</td>
+<td>The path to the client public certificate inside the Streaming Assets Folder. Keep empty if no certificates are used.</td>
+</tr>
+<tr>
+<td>Username</td>
+<td>The OPCUA username if username and password are used for security. Otherwise keep it emtpy.</td>
+</tr>
+<tr>
+<td>Password</td>
+<td>The password for the user </td>
+</tr>
+<tr>
+<td>Reconnect Time</td>
+<td>The time in ms a reconnection attempt is made if connection is broken.</td>
+</tr>
+<tr>
+<td>Max Number of Nodes per Subscription</td>
+<td>OPCUA allows multiple nodes in one subscription. Dependend on the OPCUA server the number of subscriptions or the number of nodes in one subscription might be limited. </td>
+</tr>
+<tr>
+<td>Regex Write Nodes</td>
+<td>Regex defined here will be used to define WriteNodes and in case of Game4Automation for all nodes matching this Regex a PLCInput is generated.</td>
+</tr>
+<tr>
+<td>Automatically Input On Write Signals</td>
+<td>if true, if a node has a User Access Level of CurrentWrite, automatically WriteValue is set to true and in case of Game4Automation a PLCInput is generated</td>
+</tr>
+<tr>
+<td>Create Signals (only Game4Automation)</td>
+<td>true if you want to create the G4A signals automatically during importing nodes.</td>
+</tr>
+<tr>
+<td>Automatically Subscribe On Import</td>
+<td>if true all Nodes treated as an Input (CurrentRead Nodes) are automatically subscribed for receiving data changes</td>
+</tr>
+</tbody>
+</table>
+<img src="images\opcua-inspector.png">
+<h2 id="Unity-Events"><a href="#Unity-Events" class="headerlink" title="Unity Events"></a>Unity Events</h2><p>You can assign Methods to the Events OnConnected, OnDisconnected, OnReconnecting and OnReconnected to get informed in your components about the status of the OPCUA interface.</p>
+<img src="images\opcua-events.png">
+<h2 id="Connection-troubleshouting"><a href="#Connection-troubleshouting" class="headerlink" title="Connection troubleshouting"></a>Connection troubleshouting</h2><p>If you have problems in connecting to your OPCUA server please follow these steps.</p>
+<ol>
+<li><p>Make your own test model. Copy the demo scene and use the configuration  without security certificates. Please set server to the IP address of your OPC Server (e.g. 127.0.0.1 if the server is running on the same machine):</p>
+</li>
+<li><p>Use OpcWatch to check if you can reach the server from your machine. Download OpcWatch at this location:<br><a href="https://game4automation.com/download/OpcWatch.exe" target="_blank" rel="noopener">https://game4automation.com/download/OpcWatch.exe</a><br>Start OpcWatch on the computer you are running Unity and put in the adress of your OPCUA server:</p>
+<img src="images\opcua-opcwatchip.png">
+</li>
+<li><p>Check with OpcWatch if it can connect to your OPC Server. Status of server should be shown as connected and you should be able to browse the sub nodes:</p>
+<img src="images\opcua-watchconnection.png">
+</li>
+<li><p>If you are not able to browse the server check you server configuration. Your server should run with no security settings. No security certificates and passwords should be used for first tests.</p>
+</li>
+<li><p>If you are still unable to browse the server, try to ping the server in a command line (e.g. ping 192.168.0.32). If there is no response from the ping you should check your firewall settings. Please turn the firewall on the server and your computer off.</p>
+</li>
+<li><p>If you are able to browse the server get back to Unity. Check again, that in Unity the Server address in your model is the same as in your test with OpcWatch. Open the demo model and delete all sub nodes.</p>
+</li>
+<li><p>Select node id you where able to browse with OpcWatch and put it into the field <em>Top Node Id</em> of the OPCUA_Interface configuration. Then press import nodes.</p>
+</li>
+<li><p>You should now see the subnodes of your OPC UA server. In the Console you should see the message OPCUA Interface - connected to OPCUA server [127.0.0.1] on port [48010]”</p>
+</li>
+<li><p>Compile the application on your target device (Windows, Android, IOs) and test it.</p>
+</li>
+<li><p>If you are still not able to connect on your target device please use a tool to see the log file on your target device like for example <a href="https://assetstore.unity.com/packages/tools/gui/in-game-debug-console-68068" target="_blank" rel="noopener">https://assetstore.unity.com/packages/tools/gui/in-game-debug-console-68068</a></p>
+</li>
+<li><p>Check the debug log on your mobile device. The log message should give you a hint about the problems on your mobile device.</p>
+</li>
+</ol>
+<h2 id="Security-Certificates"><a href="#Security-Certificates" class="headerlink" title="Security Certificates"></a>Security Certificates</h2><p>OPC UA is using certificates to ensure a secure communication. If you selected <em>Auto Accept Server Certificates</em> and <em>Client Auto Generate Certificate</em> a Client certificate will be automatically generated and the server certificate is automatically added to the trusted certificate folder.</p>
+<p>You can define the sub folder (to the home folder) for the certificates with <em>Certificate Path</em>. Because Unity needs access to this folder the home folder is on IOS and Android the Application.persistentDataPath or on Windows the <em>Application.streamingAssetsPath</em>.</p>
+<h3 id="Generating-your-own-Application-certificate"><a href="#Generating-your-own-Application-certificate" class="headerlink" title="Generating your own Application certificate"></a>Generating your own Application certificate</h3><p>For generating your own certificate you need to download the UA configuration tool of the OPC UA foundation. You can download it here: <a href="http://www.opclabs.com/products/ua-configuration-tool" target="_blank" rel="noopener">http://www.opclabs.com/products/ua-configuration-tool</a></p>
+<p>After downloading you can generate your own certificate with this command line. </p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">&quot;C:\Program Files (x86)\UA Configuration Tool 1.03\Opc.Ua.CertificateGenerator.exe&quot; -sp . -an game4automation</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>game4automation must be replaced with your application name and must be the same as the <em>Application Name</em> in the properties of the OPC UA interface.</p>
+</blockquote>
+<p>This will generate you two folders, <em>certs</em> and <em>private</em> in the directory where you started *Opc.UA.CertificateGenerator.exe”. You need to copy your private and public certificate into the Streaming Assets Path.</p>
+<p>To define your certificate you must enter the Path to your certificates into <em>ClientPrivateCertificate</em> and <em>ClientPublicCertificate</em>. The files are defined as subpathes in the Streaming Assets Folder.</p>
+<h2 id="Importing-OPCUA-Nodes"><a href="#Importing-OPCUA-Nodes" class="headerlink" title="Importing OPCUA Nodes"></a>Importing OPCUA Nodes</h2><p>If the interface is configured and the server is accessible you can import the Nodes from the OPCUA server.</p>
+<p>Push on <em>Import Nodes</em> and all nodes (under the Top Node ID) are imported and generated as Gameobjects with attached OPCUA_Node Scripts:<br><img src="images\opcua-importnodes.png"></p>
+<p>The OPCUA_Node Script is showing the Node information imported from the OPCUA server:<br><img src="images\opcua-node.png"></p>
+<p>With the Button <em>Read Node</em> the data can be updated from the server.</p>
+<p>If the Game4Automation framework is installed, additionally all corresponding PLCSignals are created. These signals can be dragged and dropped with sensors or drives of the Game4Automation framework.</p>
+<p>When you now start the Simulation the OPCUA signals will be exchanged between Unity and the OPCUA Server.</p>
+<h2 id="OPCUA-Nodes-with-Game4Automation-PLCInputs-and-PLCOutputs"><a href="#OPCUA-Nodes-with-Game4Automation-PLCInputs-and-PLCOutputs" class="headerlink" title="OPCUA Nodes with Game4Automation PLCInputs and PLCOutputs"></a>OPCUA Nodes with Game4Automation PLCInputs and PLCOutputs</h2><blockquote>
+<p>This section is only valid for customers who are using Game4Automation together with OPCUA4Unity. OPCUA4Unity is included in Game4Automation Professional. </p>
+</blockquote>
+<p>The OPCUA interface uses in the source code several compile switches based on the Define <em>Game4Automation</em> to define a special behavior for Game4Automation. During signal import to all imported OPCUA nodes the corresponding PLCInputs and PLCOutput signals are added. PLCOutputs are automatically subscribed on the OPCUA server. PLCInputs should not be subscribed, because they are sent to the OPCUA server by Unity.<br><img src="images\opcua-signal.png"></p>
+<p>Because in most cases it is not possible to determine, if the OPCUA node should be a PLC input or a PLC output, the booleans <em>Write Value</em>, what means that the value is written to the OPCUA server and <em>Read Value</em>, what means that the value is read from the OPCUA server. Based on this and on the data type the corresponding PLCInput or PLCOutput script is added to the OPCUA node.</p>
+<blockquote>
+<p>It is not possible to define an OPCUA node at the same time as PLCInput and PLCOutput. If you try to do that a warning message will be displayed in the log and no PLCInput or PLCOutput script will be added. If you want to use one node as input and output you need to code the interaction yourself (see below).</p>
+</blockquote>
+<p>It is possible to define a RegEx in the OPCUA interface configuration to determine automatically which OPCUA symbols should be treated as Input or Output during signal import. One ore multiple Regex can be defined symbol names or parts of symbol names which should be treated as Write Signals - that means PLCInputs or outputs from Unity.</p>
+<p>If you change anything on the above described Game4Automation related settings you can update all imported nodes by pushing on the button <em>Update nodes</em></p>
+<h2 id="Using-OPCUA-Nodes"><a href="#Using-OPCUA-Nodes" class="headerlink" title="Using OPCUA Nodes"></a>Using OPCUA Nodes</h2><p>You find a <a href"https:="" game4automation.com="" documentation="" current="" apidoc="" html="" classgame4automation_1_1_o_p_c_u_a___interface.html"=""> full API class documentation</a> online.</p>
+<p>This section give you just an overview how to use OPCUA nodes based on the demo model.</p>
+<h3 id="Reading-Values"><a href="#Reading-Values" class="headerlink" title="Reading Values"></a>Reading Values</h3><p>For reading values you can use two methods.</p>
+<h4 id="Direct-reading"><a href="#Direct-reading" class="headerlink" title="Direct reading"></a><strong>Direct reading</strong></h4><p>First one (not recommended one) is to read directly from the OPCUA server with the commands</p>
+<figure class="highlight c"><figcaption><span>PLC_CanConveyor#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">var myvar = Interface.ReadNodeValue (<span class="string">"ns=2;s=Demo.Dynamic.Scalar.UInt64"</span>)</span><br></pre></td></tr></table></figure>
+<p>You can find this methods on the OPCUA_Node Script as well as on the interface itself. If you have a direct reference to the Interface in your method you can do like this:</p>
+<figure class="highlight c"><figcaption><span>PLC_CanConveyor#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">using</span> UnityEditor;</span><br><span class="line"><span class="keyword">using</span> UnityEngine;</span><br><span class="line"><span class="keyword">using</span> game4automation;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoReadNodeNotRecommended</span> :</span> MonoBehaviour</span><br><span class="line">&#123;</span><br><span class="line"> </span><br><span class="line">    <span class="keyword">public</span> OPCUA_Interface Interface;</span><br><span class="line">    <span class="keyword">public</span> <span class="built_in">string</span> NodeId;</span><br><span class="line"></span><br><span class="line">    <span class="comment">// Update is called once per frame</span></span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">Update</span><span class="params">()</span></span></span><br><span class="line"><span class="function">    </span>&#123;</span><br><span class="line">        </span><br><span class="line">        <span class="keyword">float</span> myvar = (<span class="keyword">float</span>)Interface.ReadNodeValue(NodeId);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<blockquote>
+<p>This method is not recommended because the read is not done multithreaded and this might block or slow your application.</p>
+</blockquote>
+<h4 id="Subscribing-to-node-value-changes"><a href="#Subscribing-to-node-value-changes" class="headerlink" title="Subscribing to node value changes"></a><strong>Subscribing to node value changes</strong></h4><p>This is the recommended method. You should register to the EventOnConnected Event and when the Interface gets connected you can subscribe to the node changes.</p>
+<p>Here is an example:</p>
+<figure class="highlight c"><figcaption><span>PLC_CanConveyor#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">DemoMoveCubeWithDelegate</span> :</span> MonoBehaviour</span><br><span class="line">  &#123;</span><br><span class="line">      <span class="keyword">public</span> OPCUA_Interface Interface;</span><br><span class="line">      <span class="keyword">public</span> <span class="built_in">string</span> NodeId;</span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">float</span> PositionY;</span><br><span class="line"></span><br><span class="line">      <span class="keyword">private</span> OPCUA_Node node;</span><br><span class="line">      <span class="keyword">private</span> OPCUANodeSubscription subscription;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Start is called before the first frame update</span></span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">Start</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">  </span><br><span class="line">          <span class="keyword">if</span> (Interface != null)</span><br><span class="line">              Interface.EventOnConnected.AddListener(OnConnected);</span><br><span class="line"></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="function"><span class="keyword">public</span> <span class="keyword">void</span> <span class="title">OnConnected</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          subscription = Interface.Subscribe(NodeId, NodeChanged);</span><br><span class="line">      &#125;</span><br><span class="line">      </span><br><span class="line">      <span class="keyword">public</span> <span class="keyword">void</span></span><br><span class="line">          NodeChanged(OPCUANodeSubscription sub, object obj) <span class="comment">// Is called when Node Value of Node nodeid is changed</span></span><br><span class="line">      &#123;</span><br><span class="line">          PositionY = (<span class="keyword">float</span>) obj; <span class="comment">// sets the new position based on the new value </span></span><br><span class="line">      &#125;</span><br><span class="line"></span><br><span class="line">      <span class="comment">// Update is called once per frame</span></span><br><span class="line">      <span class="function"><span class="keyword">void</span> <span class="title">Update</span><span class="params">()</span></span></span><br><span class="line"><span class="function">      </span>&#123;</span><br><span class="line">          transform.rotation = Quaternion.Euler(<span class="keyword">new</span> Vector3(<span class="number">0</span>, PositionY, <span class="number">0</span>));</span><br><span class="line">      &#125;</span><br><span class="line">  &#125;</span><br></pre></td></tr></table></figure>
+<h3 id="Writing-Values"><a href="#Writing-Values" class="headerlink" title="Writing Values"></a>Writing Values</h3><p>You can write values like this:</p>
+<figure class="highlight c"><figcaption><span>PLC_CanConveyor#</span></figcaption><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">bool</span> success = Interface.WriteNodeValue (<span class="string">"ns=2;s=Demo.Dynamic.Scalar.Float"</span>,<span class="number">100</span>)</span><br></pre></td></tr></table></figure>
+
+	  <br>
+
+	  <p><font size="1">&copy; 2019 in2Sight GmbH <a href="https://game4automation.com"> https://game4automation.com </a> - All rights reserved. No part of this publication may be reproduced, distributed, or transmitted in any form or by any means, including printing, saving, photocopying, recording, or other electronic or mechanical methods, without the prior written permission of the publisher.</font></p>
+    </div>
+	
+  </div>
+  <div class="switch-page">
+    
+    
+  </div>
+</body>
+</html>

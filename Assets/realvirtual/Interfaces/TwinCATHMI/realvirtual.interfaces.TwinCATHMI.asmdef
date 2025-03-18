@@ -1,0 +1,19 @@
+{
+    "name": "realvirtual.interfaces.TwinCATHMIClient",
+    "rootNamespace": "",
+    "references": [
+        "GUID:776d03a35f1b52c4a9aed9f56d7b4229",
+        "GUID:04376767bc1f3b428aefa3d20743e819",
+        "GUID:9069ac25d95ca17448a247f3bb1c769f",
+        "GUID:e308546d627524f418b1aaa0b161dd30"
+    ],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}

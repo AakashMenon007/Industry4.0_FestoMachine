@@ -1,0 +1,95 @@
+def realvirtualdemo():
+  set_safety_mode_transition_hardness(1)
+  set_standard_analog_input_domain(0, 1)
+  set_standard_analog_input_domain(1, 1)
+  set_tool_analog_input_domain(0, 1)
+  set_tool_analog_input_domain(1, 1)
+  set_analog_outputdomain(0, 0)
+  set_analog_outputdomain(1, 0)
+  set_input_actions_to_default()
+  set_tool_communication(False, 115200, 0, 1, 1.5, 3.5)
+  set_tool_output_mode(0)
+  set_tool_digital_output_mode(0, 1)
+  set_tool_digital_output_mode(1, 1)
+  set_tool_voltage(0)
+  step_count_6a523ab2_6502_4c08_9034_4bd8b0ce12d9 = 0.0
+  thread Step_Counter_Thread_7df1672c_0150_4690_896d_7e881c14d68e():
+    while (True):
+      step_count_6a523ab2_6502_4c08_9034_4bd8b0ce12d9 = step_count_6a523ab2_6502_4c08_9034_4bd8b0ce12d9 + 1.0
+      sync()
+    end
+  end
+  run Step_Counter_Thread_7df1672c_0150_4690_896d_7e881c14d68e()
+  set_tcp(p[0.0,0.0,0.0,0.0,0.0,0.0])
+  set_payload(5.0)
+  set_gravity([0.0, 0.0, 9.82])
+  global Start_Point_p=p[-.003191895969, -.280988604037, .612906407879, 3.137113112934, .059633650698, -.029111345718]
+  global Start_Point_q=[0.8972877398801913, -2.4075960551871507, 2.1663426842036193, 4.938886923305094, -1.5826648923273554, -3.8532023985319945]
+  global BeforPickup_p=p[.030950535740, -.747512358928, .555964074547, 3.137113112935, .059633650698, -.029111345716]
+  global BeforPickup_q=[1.3800290804008846, -1.4915211656742464, 1.7028511083177875, 4.493499324848884, -1.5881581170229673, -3.3704391195492924]
+  global Pickup_p=p[.030950535732, -.747512358973, .445621741206, 3.137113112935, .059633650698, -.029111345716]
+  global Pickup_q=[1.3800290804320046, -1.435527930050302, 1.843112292205356, 4.297244905337912, -1.5881581170232, -3.370439119518169]
+  global Intermediate_p=p[-.311991797414, -.436912358749, .774148740928, -2.786791531566, 1.438082107429, .028413597901]
+  global Intermediate_q=[0.6246015157682763, -1.852363185011157, 1.6390270626090635, 4.922423083265225, -1.5894423248899026, -3.1350318427050485]
+  global BeforePlaced_p=p[-.788383742782, -.373713191205, .694021896982, 1.968404101030, 2.411662400240, -.009565656707]
+  global BeforePlaced_q=[0.23808430373636408, -1.2967103809676095, 1.2240828588482886, 4.797377609412768, -1.5442999065488197, -6.246976034432434]
+  global Placed_p=p[-.788383742142, -.373713191049, .457790229908, 1.968404101030, 2.411662400240, -.009565656708]
+  global Placed_q=[0.23808430379299228, -1.246338197167864, 1.5771758710434565, 4.393912413416343, -1.5442999065481402, -6.246976034375798]
+  $ 1 "BeforeStart"
+  $ 2 "Set DO[0]=Off"
+  set_standard_digital_out(0, False)
+  $ 3 "Set DO[1]=Off"
+  set_standard_digital_out(1, False)
+  $ 4 "Set DO[2]=Off"
+  set_standard_digital_out(2, False)
+  $ 5 "MoveJ"
+  $ 6 "Start_Point" "breakAfter"
+  movej(get_inverse_kin(Start_Point_p, qnear=Start_Point_q), a=1.3962634015954636, v=1.0471975511965976)
+  while (True):
+    $ 7 "Robot Program"
+    $ 8 "If digital_in[0]≟ True "
+    if (get_standard_digital_in(0) ==   True  ):
+      $ 9 "Set DO[1]=On"
+      set_standard_digital_out(1, True)
+      $ 10 "Set DO[2]=Off"
+      set_standard_digital_out(2, False)
+      $ 11 "MoveJ"
+      $ 12 "BeforPickup" "breakAfter"
+      movej(get_inverse_kin(BeforPickup_p, qnear=BeforPickup_q), a=1.3962634015954636, v=1.0471975511965976)
+      $ 13 "MoveL"
+      $ 14 "Pickup" "breakAfter"
+      movel(Pickup_p, a=1.2, v=0.25)
+      $ 15 "Set DO[0]=On"
+      set_standard_digital_out(0, True)
+      $ 16 "Wait: 1.0"
+      sleep(1.0)
+      $ 17 "BeforPickup" "breakAfter"
+      movel(BeforPickup_p, a=1.2, v=0.25)
+      $ 18 "MoveJ"
+      $ 19 "Intermediate" "breakAfter"
+      movej(get_inverse_kin(Intermediate_p, qnear=Intermediate_q), a=1.3962634015954636, v=1.0471975511965976)
+      $ 20 "BeforePlaced" "breakAfter"
+      movej(get_inverse_kin(BeforePlaced_p, qnear=BeforePlaced_q), a=1.3962634015954636, v=1.0471975511965976)
+      $ 21 "Wait DI[1]=HI"
+      while (get_standard_digital_in(1) == False):
+        sync()
+      end
+      $ 22 "MoveL"
+      $ 23 "Placed" "breakAfter"
+      movel(Placed_p, a=1.2, v=0.25)
+      $ 24 "Set DO[0]=Off"
+      set_standard_digital_out(0, False)
+      $ 25 "Wait: 1.0"
+      sleep(1.0)
+      $ 26 "MoveL"
+      $ 27 "BeforePlaced" "breakAfter"
+      movel(BeforePlaced_p, a=1.2, v=0.25)
+      $ 28 "Set DO[2]=On"
+      set_standard_digital_out(2, True)
+      $ 29 "Intermediate" "breakAfter"
+      movel(Intermediate_p, a=1.2, v=0.25)
+      $ 30 "Start_Point" "breakAfter"
+      movel(Start_Point_p, a=1.2, v=0.25)
+    end
+  end
+end
