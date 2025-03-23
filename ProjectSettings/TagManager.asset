@@ -3,7 +3,30 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - QDSUIBackplateGradient
+  - QDSUISection
+  - QDSUIIcon
+  - QDSUISharedThemeColor
+  - QDSUITextSecondaryColor
+  - QDSUITooltip
+  - QDSUIToggleButton
+  - QDSUIToggleBorderlessButton
+  - QDSUISecondaryButton
+  - QDSUIToggleCheckboxRadio
+  - QDSUIDestructiveButton
+  - QDSUIBorderlessButton
+  - QDSUITextInputField
+  - QDSUIPrimaryButton
+  - QDSUIAccentColor
+  - QDSUITextInvertedColor
+  - QDSUITextSecondaryInvertedColor
+  - QDSUIToggleSwitch
+  - g4a firstlight
+  - g4a sun
+  - g4a secondlight
+  - Can
+  - Align
   layers:
   - Default
   - TransparentFX
@@ -18,15 +41,15 @@ TagManager:
   - 
   - 
   - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
-  - 
+  - rvMUSensor
+  - rvMUTransport
+  - rvSensor
+  - rvTransport
+  - rvMU
+  - rvSnapping
+  - rvSimDynamic
+  - rvSimStatic
+  - rvSelection
   - 
   - 
   - 
