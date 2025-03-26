@@ -17,24 +17,50 @@ public class RobotinoStreamController : MonoBehaviour
 
     private Texture2D currentTexture;
     private Coroutine streamingCoroutine;
-    private bool isStreaming = true;
+    private bool isStreaming = false;
 
-    void Start()
+    void Awake()
     {
         InitializeTexture();
+    }
+
+    void OnEnable()
+    {
         StartStreaming();
+    }
+
+    void OnDisable()
+    {
+        StopStreaming();
     }
 
     void InitializeTexture()
     {
-        currentTexture = new Texture2D(2, 2, TextureFormat.RGB24, false);
+        if (currentTexture == null)
+        {
+            currentTexture = new Texture2D(2, 2, TextureFormat.RGB24, false);
+        }
         displayImage.texture = currentTexture;
     }
 
     void StartStreaming()
     {
-        if (streamingCoroutine != null) StopCoroutine(streamingCoroutine);
+        if (isStreaming) return;
+
+        isStreaming = true;
         streamingCoroutine = StartCoroutine(StreamUpdateLoop());
+    }
+
+    void StopStreaming()
+    {
+        if (!isStreaming) return;
+
+        isStreaming = false;
+        if (streamingCoroutine != null)
+        {
+            StopCoroutine(streamingCoroutine);
+            streamingCoroutine = null;
+        }
     }
 
     IEnumerator StreamUpdateLoop()
@@ -48,7 +74,6 @@ public class RobotinoStreamController : MonoBehaviour
 
     IEnumerator FetchCameraFrame()
     {
-        // Generate unique timestamp parameter
         string jsonParams = $"{{\"TYPE\":\"getimage\",\"A\":{DateTime.Now.Ticks}}}";
         string encodedParams = Uri.EscapeUriString(jsonParams);
         string fullUrl = baseUrl + encodedParams;
@@ -71,20 +96,13 @@ public class RobotinoStreamController : MonoBehaviour
 
     void UpdateDisplayTexture(Texture2D newTexture)
     {
-        // Reinitialize if dimensions change
-        if (currentTexture.width != newTexture.width || currentTexture.height != newTexture.height)
+        if (currentTexture == null || currentTexture.width != newTexture.width || currentTexture.height != newTexture.height)
         {
-            currentTexture.Reinitialize(newTexture.width, newTexture.height);
+            currentTexture = new Texture2D(newTexture.width, newTexture.height, TextureFormat.RGB24, false);
+            displayImage.texture = currentTexture;
         }
 
-        // Copy texture data
         currentTexture.LoadRawTextureData(newTexture.GetRawTextureData());
         currentTexture.Apply();
-    }
-
-    void OnDisable()
-    {
-        isStreaming = false;
-        if (currentTexture != null) Destroy(currentTexture);
     }
 }

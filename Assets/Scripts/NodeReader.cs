@@ -20,7 +20,7 @@ public class NodeReader : MonoBehaviour
     // Find the UIUpdateManager component on scene start
     private void Awake()
     {
-        uiUpdateManager = GameObject.FindGameObjectWithTag("UIUpdateManager").GetComponent<UIUpdateManager>();
+        //uiUpdateManager = GameObject.FindGameObjectWithTag("UIUpdateManager").GetComponent<UIUpdateManager>();
     }
 
     // Subscribe to OPC UA events on start
