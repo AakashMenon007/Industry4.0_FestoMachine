@@ -2,7 +2,8 @@ using UnityEngine;
 using realvirtual;
 
 
-public class NodeReader : MonoBehaviour
+
+public class MRNodeReader : MonoBehaviour
 {
 
     [Header("Factory Machine")]
@@ -14,10 +15,7 @@ public class NodeReader : MonoBehaviour
     public string nodeID;
     public string dataFromOPCUANode;
 
-    [Header("UI")]
-    public UIUpdateManager uiUpdateManager;
 
-    // Find the UIUpdateManager component on scene start
 
     // Subscribe to OPC UA events on start
     void Start()
@@ -29,6 +27,7 @@ public class NodeReader : MonoBehaviour
     // Method called when the OPC UA interface is connected
     private void OnInterfaceConnected()
     {
+        // Subscribe to the specified node and provide the method to call on node change
         var subscription = oPCUAinterface.Subscribe(nodeID, NodeChanged);
         dataFromOPCUANode = subscription.ToString();
 
@@ -46,6 +45,10 @@ public class NodeReader : MonoBehaviour
     // Method called when the monitored node changes its value
     public void NodeChanged(OPCUANodeSubscription sub, object value)
     {
+        //if(nodeBeingMonitored == "Icon")
+        //{
+        //    dataFromOPCUANode
+        //}
         dataFromOPCUANode = value.ToString();
     }
 }

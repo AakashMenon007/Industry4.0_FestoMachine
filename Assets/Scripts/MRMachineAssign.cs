@@ -1,51 +1,91 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
 using TMPro;
+
 public class MRMachineAssign : MonoBehaviour
 {
     [Header("Machine Identifier")]
-    public int machineNumber;
+    [SerializeField] private int machineNumber = 1; // Default to 1
 
-    [Header("Nodes Being Read & Holders")]
-    public GameObject rfidReadersHolder;
-    public GameObject emgStopReadersHolder;
-    public NodeReader[] rfidReaders;
-    public NodeReader[] emgStopReaders;
+    [Header("Node Holders")]
+    [SerializeField] private GameObject rfidReadersHolder;
+    [SerializeField] private GameObject emgStopReadersHolder;
 
+    [Header("UI Display")]
+    [SerializeField] private TMP_Text machineNumberDisplay;
+    [SerializeField] private TMP_Text rFIDDisplay;
+    [SerializeField] private TMP_Text emgStopDisplay;
 
-
-    [Header ("UI & Output Display")]
-    public TMP_Text machineNumberDisplay;
-    public TMP_Text rFIDDisplay;
-    public TMP_Text emgStopDisplay;
-
-    private bool machineAssigned = false;
+    private MRNodeReader[] rfidReaders;
+    private MRNodeReader[] emgStopReaders;
+    private bool initialized;
 
     private void Start()
     {
-        rfidReadersHolder = GameObject.Find("RFIDIn");
-        emgStopReadersHolder = GameObject.Find("EMGStop");
+        InitializeReferences();
+        ValidateMachineNumber();
+        initialized = true;
+    }
 
-        rfidReaders = rfidReadersHolder.GetComponentsInChildren<NodeReader>();
-        emgStopReaders = emgStopReadersHolder.GetComponentsInChildren<NodeReader>();
+    private void InitializeReferences()
+    {
+        if (rfidReadersHolder == null)
+            rfidReadersHolder = GameObject.Find("RFIDIn");
+        if (emgStopReadersHolder == null)
+            emgStopReadersHolder = GameObject.Find("EMGStop");
 
-        AssignMachineNumber();
+        if (rfidReadersHolder)
+            rfidReaders = rfidReadersHolder.GetComponentsInChildren<MRNodeReader>(true);
+        if (emgStopReadersHolder)
+            emgStopReaders = emgStopReadersHolder.GetComponentsInChildren<MRNodeReader>(true);
+    }
+
+    private void ValidateMachineNumber()
+    {
+        machineNumber = Mathf.Clamp(machineNumber, 1, int.MaxValue);
+        UpdateMachineNumberDisplay();
     }
 
     private void Update()
     {
-        if(machineAssigned)
+        if (!initialized) return;
+
+        UpdateMachineNumberDisplay();
+        UpdateRFIDDisplay();
+        UpdateEmergencyStopDisplay();
+    }
+
+    private void UpdateMachineNumberDisplay()
+    {
+        if (machineNumberDisplay)
+            machineNumberDisplay.text = $"Machine {machineNumber}";
+    }
+
+    private void UpdateRFIDDisplay()
+    {
+        if (IsValidIndex(rfidReaders, machineNumber - 1) && rFIDDisplay != null)
         {
-            machineNumberDisplay.text = "Machine " + machineNumber.ToString();
-            rFIDDisplay.text = "Cart " + rfidReaders[machineNumber - 1].dataFromOPCUANode + " has entered the machine.";
-            emgStopDisplay.text = emgStopReaders[machineNumber - 1].dataFromOPCUANode;
+            var rfidData = rfidReaders[machineNumber - 1].dataFromOPCUANode;
+            rFIDDisplay.text = $"Cart {rfidData} has entered the machine.";
         }
     }
 
-    public void AssignMachineNumber()
+    private void UpdateEmergencyStopDisplay()
     {
-        machineAssigned = true;
+        if (IsValidIndex(emgStopReaders, machineNumber - 1) && emgStopDisplay != null)
+        {
+            var emgData = emgStopReaders[machineNumber - 1].dataFromOPCUANode;
+            emgStopDisplay.text = emgData;
+        }
+    }
+
+    private bool IsValidIndex(MRNodeReader[] array, int index)
+    {
+        return array != null && index >= 0 && index < array.Length;
+    }
+
+    public void AssignMachineNumber(int newNumber)
+    {
+        machineNumber = newNumber;
+        ValidateMachineNumber();
     }
 }
