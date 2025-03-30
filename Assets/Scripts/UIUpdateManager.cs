@@ -5,100 +5,60 @@ using TMPro;
 
 public class UIUpdateManager : MonoBehaviour
 {
-    [System.Serializable]
-    public class MachineUI
-    {
-        [Header("Node Readers")]
-        public NodeReader RFIDInNodeReader;
-        public NodeReader EmStopNodeReader;
-        public NodeReader ResetNodeReader;
-        public NodeReader SafetyDoorNodeReader;
-        public NodeReader PCBoxNodeReader;
-
-
-        [Header("TMP Text")]
-        public TMP_Text RFIDInTMP;
-        public TMP_Text EmStopTMP;
-        public TMP_Text ResetTMP;
-        public TMP_Text SafetyDoorText;
-        public TMP_Text PCBoxText;
-    }
-
     [Header("Project Scripts")]
-    public OPCUA_Interface[] interfaces;
+    public OPCUA_Interface[] interfacess;
+    public NodeReader[] RFIDInNodeReaders;
+    public SendOrder sendOrder;
 
-    [Header("Machine UI")]
-    public MachineUI[] machines = new MachineUI[9];
-
-    [Header("Connection Status")]
+    [Header("Project UI Elements")]
     public Image[] connectionImages;
+    public TMP_Text[] RFIDInTMP;
+    public TMP_Dropdown orderQuantityDropdown;
+    public TMP_Dropdown partNumberDropdown;
+
+    public Image iconImage;
 
     // Method to update connection status images based on OPC UA interface connection
-    public void UpdateConnectionImages(int interfaceIndex)
+    public void UpdateConnectionImages(int interfaceToRead)
     {
-        connectionImages[interfaceIndex].color = interfaces[interfaceIndex].IsConnected ? Color.green : Color.red;
+        if (interfacess[interfaceToRead].IsConnected)
+        {
+            connectionImages[interfaceToRead].color = Color.green;
+        }
+        else
+        {
+            connectionImages[interfaceToRead].color = Color.red;
+        }
     }
 
     // Method to update text information from OPC UA node to TMP_Text component
-    public void UpdateDataFromNodeTMP(int machineIndex, string nodeType)
+    public void UpdateDataFromNodeTMP(int interfaceToRead, string node)
     {
-        MachineUI machine = machines[machineIndex];
-        string data = "";
-
-        switch (nodeType)
+        if (node == "RFIDIn")
         {
-            case "RFIDIn":
-                data = machine.RFIDInNodeReader.dataFromOPCUANode;
-                Debug.LogWarning($"Machine {machineIndex + 1} RFID is reading: {data}");
-                break;
-            case "EmStop":
-                data = machine.EmStopNodeReader.dataFromOPCUANode;
-                Debug.LogWarning($"Machine {machineIndex + 1} EmStop is reading: {data}");
-                break;
-            case "Reset":
-                data = machine.ResetNodeReader.dataFromOPCUANode;
-                Debug.LogWarning($"Machine {machineIndex + 1} Reset is reading: {data}");
-                break;
-            case "SafetyDoor":
-                data = machine.SafetyDoorNodeReader.dataFromOPCUANode;
-                Debug.LogWarning($"Machine {machineIndex + 1}  is reading: {data}");
-                break;
-            case "PCBox":
-                data = machine.PCBoxNodeReader.dataFromOPCUANode;
-                Debug.LogWarning($"Machine {machineIndex + 1}  is reading: {data}");
-                break;
+            Debug.LogWarning(interfaceToRead + 1 + " is reading: " + RFIDInNodeReaders[interfaceToRead].dataFromOPCUANode);
         }
+
+        if (node == "Icon")
+        {
+            //iconImage = Instantiate(RFIDInNodeReaders[interfaceToRead].dataFromOPCUANode);
+        }
+
+    }
+
+    // Method to send an order to the machine using values from UI dropdowns
+    public void SendOrderToMachine()
+    {
+        sendOrder.partNumber = partNumberDropdown.options[partNumberDropdown.value].text;
+        sendOrder.qty = orderQuantityDropdown.options[orderQuantityDropdown.value].text;
+        sendOrder.SendOrderToFactory();
     }
 
     private void Update()
     {
-        for (int i = 0; i < machines.Length; i++)
+        for (int i = 0; i < RFIDInNodeReaders.Length; i++)
         {
-            MachineUI machine = machines[i];
-
-            // RFID
-            machine.RFIDInTMP.text = machine.RFIDInNodeReader.dataFromOPCUANode;
-
-            // Emergency Stop
-            machine.EmStopTMP.text = GetCustomMessage(machine.EmStopNodeReader.dataFromOPCUANode, "Disengaged", "Engaged");
-
-            // Reset
-            machine.ResetTMP.text = GetCustomMessage(machine.ResetNodeReader.dataFromOPCUANode, "Engaged", "Disengaged");
-
-            // Safety Door
-            machine.SafetyDoorText.text = GetCustomMessage(machine.SafetyDoorNodeReader.dataFromOPCUANode, "Open", "Closed");
-
-            // Safety Door
-            machine.PCBoxText.text = GetCustomMessage(machine.PCBoxNodeReader.dataFromOPCUANode, "No Change", "Change Req ");
+            RFIDInTMP[i].text = RFIDInNodeReaders[i].dataFromOPCUANode;
         }
-    }
-
-    private string GetCustomMessage(string opcUAValue, string trueMessage, string falseMessage)
-    {
-        if (bool.TryParse(opcUAValue, out bool boolValue))
-        {
-            return boolValue ? trueMessage : falseMessage;
-        }
-        return "Unknown State";
     }
 }

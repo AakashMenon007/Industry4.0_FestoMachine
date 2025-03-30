@@ -8,9 +8,12 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Samples/Meta MR Utility Kit/74.0.0/Environment Panel Placement (Beta)/EnvironmentPanelPlacement.unity
     guid: 01a2198db44a25d44a3108875f7fd3d5
-  - enabled: 1
+  - enabled: 0
     path: Assets/room.unity
     guid: a8fd4685f862e0f448165294d18cca5e
+  - enabled: 1
+    path: Assets/Scenes/DigitalTwin.unity
+    guid: cc3455030fe107a4b991e5ab5eea9f4a
   m_configObjects:
     Unity.XR.Oculus.Settings: {fileID: 11400000, guid: 89e2609daf52dbd4392b8f830349fa97, type: 2}
     com.unity.xr.management.loader_settings: {fileID: 11400000, guid: 076ee12761680ea489c051371020630b, type: 2}

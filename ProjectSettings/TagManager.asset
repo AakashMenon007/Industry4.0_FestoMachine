@@ -27,6 +27,7 @@ TagManager:
   - g4a secondlight
   - Can
   - Align
+  - Gestures
   layers:
   - Default
   - TransparentFX
