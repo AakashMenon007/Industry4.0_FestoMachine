@@ -36,7 +36,7 @@ public class NodeReader : MonoBehaviour
         // Subscribe to the specified node and provide the method to call on node change
         var subscription = oPCUAinterface.Subscribe(nodeID, NodeChanged);
         dataFromOPCUANode = subscription.ToString();
-        uiUpdateManager.UpdateConnectionImages(factoryMachineID - 1);
+        //uiUpdateManager.UpdateConnectionImages(factoryMachineID - 1);
 
         Debug.Log("Connected to Factory Machine " + factoryMachineID);
         Debug.Log(dataFromOPCUANode);
@@ -46,7 +46,7 @@ public class NodeReader : MonoBehaviour
     private void OnInterfaceDisconnected()
     {
         // Update UI elements based on the disconnection
-        uiUpdateManager.UpdateConnectionImages(factoryMachineID - 1);
+        //uiUpdateManager.UpdateConnectionImages(factoryMachineID - 1);
 
         Debug.LogWarning("Factory Machine " + factoryMachineID + " has disconnected");
     }

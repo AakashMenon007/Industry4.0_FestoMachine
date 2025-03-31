@@ -28,6 +28,7 @@ TagManager:
   - Can
   - Align
   - Gestures
+  - UIUpdateManager
   layers:
   - Default
   - TransparentFX
