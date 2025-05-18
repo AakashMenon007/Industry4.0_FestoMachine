@@ -25,9 +25,9 @@ An innovative Mixed Reality (MR) application designed to revolutionize industria
 * Interactive panels and emergency/reset buttons that simulate real industrial functionality.  
 * Floating UI control panel for enhanced accessibility and user interaction.
 
-<img src="https://github.com/user-attachments/assets/782e3f91-59aa-4b5d-ba8c-3a12cbad6919" alt="Screenshot 5" width="600" />
+<img src="https://github.com/user-attachments/assets/782e3f91-59aa-4b5d-ba8c-3a12cbad6919" alt="Screenshot 5" width="400" />
 
-<img src="https://github.com/user-attachments/assets/0065e067-e857-4453-a3c6-12029004554c" alt="Screenshot 6" width="600" />
+<img src="https://github.com/user-attachments/assets/0065e067-e857-4453-a3c6-12029004554c" alt="Screenshot 6" width="400" />
 
 ### Live Camera Streaming
 
