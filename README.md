@@ -13,11 +13,11 @@ An innovative Mixed Reality (MR) application designed to revolutionize industria
 * Monitor real-time machine data such as connection status, emergency/reset button states, RFID readings, and safety door statuses.  
 * Access and interact with data from various Festo factory stations including the robot arm, camera station, and more.
 
-<img src="https://github.com/user-attachments/assets/a6ff7b2c-4a32-453b-99c1-ca059bbf48dc" alt="Screenshot 2" width="600" />
+<img src="https://github.com/user-attachments/assets/a6ff7b2c-4a32-453b-99c1-ca059bbf48dc" alt="Screenshot 2" width="400" />
 
-<img src="https://github.com/user-attachments/assets/7a0d8bcd-0025-488a-80c5-2c9beec07fe7" alt="Screenshot 3" width="600" />
+<img src="https://github.com/user-attachments/assets/7a0d8bcd-0025-488a-80c5-2c9beec07fe7" alt="Screenshot 3" width="400" />
 
-<img src="https://github.com/user-attachments/assets/1bee34e7-483c-42b1-8300-b6e4efec2123" alt="Screenshot 4" width="600" />
+<img src="https://github.com/user-attachments/assets/1bee34e7-483c-42b1-8300-b6e4efec2123" alt="Screenshot 4" width="400" />
 
 ### Digital Twin Mode
 
