@@ -92,17 +92,6 @@ An innovative Mixed Reality (MR) application designed to revolutionize industria
 
 ---
 
-## 📂 Project Structure
-
-```
-/Assets
-  /Scripts         # C# scripts for UI, data integration, and camera streaming
-  /Scenes          # Unity scenes for Digital Twin and Control Panel modes
-  /Prefabs         # Reusable UI panels and interactive elements
-  /Streaming       # MJPG streaming handlers and camera feed implementations
-  /XR             # XR Interaction Toolkit & Oculus SDK assets and setups
-/Docs              # Documentation and technical notes
-```
 
 ---
 
